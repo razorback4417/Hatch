@@ -1,0 +1,226 @@
+strict digraph {
+	graph [bb="0,0,3827,174"];
+	node [label="\N"];
+	subgraph cluster_2812_IERC165 {
+		graph [bb="8,91,166,166",
+			label=IERC165,
+			lheight=0.21,
+			lp="87,154.5",
+			lwidth=0.72
+		];
+		"2812_supportsInterface"	[height=0.5,
+			label=supportsInterface,
+			pos="87,117",
+			width=1.9859];
+	}
+	subgraph cluster_997_Ownable {
+		graph [bb="174,8,723,166",
+			label=Ownable,
+			lheight=0.21,
+			lp="448.5,154.5",
+			lwidth=0.68
+		];
+		"997_renounceOwnership"	[height=0.5,
+			label=renounceOwnership,
+			pos="464,117",
+			width=2.2567];
+		"997__setOwner"	[height=0.5,
+			label=_setOwner,
+			pos="464,34",
+			width=1.354];
+		"997_renounceOwnership" -> "997__setOwner"	[pos="e,464,52.153 464,98.822 464,88.19 464,74.306 464,62.204"];
+		"997_onlyOwner"	[height=0.5,
+			pos="618,34",
+			width=1.8776];
+		"997_renounceOwnership" -> "997_onlyOwner"	[pos="e,588.8,50.358 494.06,100.19 518.57,87.299 553.33,69.012 579.81,55.086"];
+		"997_transferOwnership"	[height=0.5,
+			label=transferOwnership,
+			pos="639,117",
+			width=2.1123];
+		"997_transferOwnership" -> "997__setOwner"	[pos="e,485.47,50.277 592.26,102.71 575.74,97.377 557.23,90.665 541,83 524.87,75.386 507.95,65.12 494.09,56.036"];
+		"997_transferOwnership" -> "997_onlyOwner"	[pos="e,622.45,52.153 634.55,98.822 631.76,88.083 628.12,74.025 624.96,61.837"];
+		"997_constructor"	[height=0.5,
+			label=constructor,
+			pos="315,117",
+			width=1.3902];
+		"997_constructor" -> "997__setOwner"	[pos="e,444.66,50.751 345.5,102.72 354.62,98.843 364.68,94.665 374,91 383.68,87.191 386.78,87.82 396,83 410.01,75.673 424.47,65.839 436.44,\
+56.98"];
+		"997__msgSender"	[height=0.5,
+			pos="315,34",
+			width=2.004];
+		"997_constructor" -> "997__msgSender"	[pos="e,315,52.153 315,98.822 315,88.19 315,74.306 315,62.204"];
+		"997_owner"	[height=0.5,
+			label=owner,
+			pos="214,117",
+			width=0.9027];
+	}
+	subgraph cluster_713_MarketPlace {
+		graph [bb="1081,8,2590,166",
+			label=MarketPlace,
+			lheight=0.21,
+			lp="1835.5,154.5",
+			lwidth=0.97
+		];
+		"713_listItemsForSale"	[height=0.5,
+			label=listItemsForSale,
+			pos="2513,117",
+			width=1.9137];
+		"713_listItem"	[height=0.5,
+			label=listItem,
+			pos="2513,34",
+			width=1.0652];
+		"713_listItemsForSale" -> "713_listItem"	[pos="e,2513,52.153 2513,98.822 2513,88.19 2513,74.306 2513,62.204"];
+		"713_nonReentrant"	[height=0.5,
+			pos="2374,34",
+			width=2.0943];
+		"713_listItemsForSale" -> "713_nonReentrant"	[pos="e,2401.2,50.846 2486.2,100.38 2464.5,87.745 2433.8,69.832 2410,55.95"];
+		"713_relistItem"	[height=0.5,
+			label=relistItem,
+			pos="1710,117",
+			width=1.2457];
+		"713_delistItem"	[height=0.5,
+			label=delistItem,
+			pos="2245,117",
+			width=1.2818];
+		"713_getCurrentItemId"	[height=0.5,
+			label=getCurrentItemId,
+			pos="2109,117",
+			width=2.004];
+		"713_getListedItems"	[height=0.5,
+			label=getListedItems,
+			pos="1955,117",
+			width=1.7693];
+		"713_constructor"	[height=0.5,
+			label=constructor,
+			pos="1823,117",
+			width=1.3902];
+		"713_purchaseItem"	[height=0.5,
+			label=purchaseItem,
+			pos="2368,117",
+			width=1.6249];
+		"713_purchaseItem" -> "713_nonReentrant"	[pos="e,2372.7,52.153 2369.3,98.822 2370.1,88.19 2371.1,74.306 2372,62.204"];
+		"713_getItemById"	[height=0.5,
+			label=getItemById,
+			pos="1591,117",
+			width=1.5526];
+		"713_getItemsOwned"	[height=0.5,
+			label=getItemsOwned,
+			pos="1450,117",
+			width=1.8596];
+		"713_slitherConstructorConstantVariables"	[height=0.5,
+			label=slitherConstructorConstantVariables,
+			pos="1227,117",
+			width=3.8274];
+	}
+	subgraph cluster_1037_ReentrancyGuard {
+		graph [bb="2598,91,2714,166",
+			label=ReentrancyGuard,
+			lheight=0.21,
+			lp="2656,154.5",
+			lwidth=1.33
+		];
+		"1037_constructor"	[height=0.5,
+			label=constructor,
+			pos="2656,117",
+			width=1.3902];
+	}
+	subgraph cluster_2766_ERC165 {
+		graph [bb="731,91,889,166",
+			label=ERC165,
+			lheight=0.21,
+			lp="810,154.5",
+			lwidth=0.65
+		];
+		"2766_supportsInterface"	[height=0.5,
+			label=supportsInterface,
+			pos="810,117",
+			width=1.9859];
+	}
+	subgraph cluster_2800_ERC1155Receiver {
+		graph [bb="897,91,1073,166",
+			label=ERC1155Receiver,
+			lheight=0.21,
+			lp="985,154.5",
+			lwidth=1.42
+		];
+		"2800_supportsInterface"	[height=0.5,
+			label=supportsInterface,
+			pos="976,117",
+			width=1.9859];
+		"2800_supportsInterface" -> "2800_supportsInterface"	[pos="e,1018.4,102.47 1018.4,131.53 1042.8,134.5 1065.5,129.65 1065.5,117 1065.5,106.13 1048.7,101.02 1028.5,101.68"];
+	}
+	subgraph cluster_2268_Context {
+		graph [bb="2722,91,2959,166",
+			label=Context,
+			lheight=0.21,
+			lp="2840.5,154.5",
+			lwidth=0.60
+		];
+		"2268__msgData"	[height=0.5,
+			label=_msgData,
+			pos="2904,117",
+			width=1.2999];
+		"2268__msgSender"	[height=0.5,
+			label=_msgSender,
+			pos="2785,117",
+			width=1.5165];
+	}
+	subgraph cluster_2173_ERC1155Holder {
+		graph [bb="2967,91,3389,166",
+			label=ERC1155Holder,
+			lheight=0.21,
+			lp="3178,154.5",
+			lwidth=1.26
+		];
+		"2173_onERC1155Received"	[height=0.5,
+			label=onERC1155Received,
+			pos="3294,117",
+			width=2.4192];
+		"2173_onERC1155BatchReceived"	[height=0.5,
+			label=onERC1155BatchReceived,
+			pos="3082,117",
+			width=2.9789];
+	}
+	subgraph cluster_2431_IERC1155Receiver {
+		graph [bb="3397,91,3819,166",
+			label=IERC1155Receiver,
+			lheight=0.21,
+			lp="3608,154.5",
+			lwidth=1.47
+		];
+		"2431_onERC1155Received"	[height=0.5,
+			label=onERC1155Received,
+			pos="3724,117",
+			width=2.4192];
+		"2431_onERC1155BatchReceived"	[height=0.5,
+			label=onERC1155BatchReceived,
+			pos="3512,117",
+			width=2.9789];
+	}
+	subgraph cluster_solidity {
+		graph [bb="817,8,1073,83",
+			label="[Solidity]",
+			lheight=0.21,
+			lp="945,71.5",
+			lwidth=0.72
+		];
+		"type()"	[height=0.5,
+			pos="857,34",
+			width=0.88464];
+		"require(bool,string)"	[height=0.5,
+			pos="986,34",
+			width=2.2026];
+	}
+	"997_transferOwnership" -> "require(bool,string)"	[pos="e,962.98,51.35 681.08,101.92 695.48,97.672 711.8,93.481 727,91 764.54,84.873 861.37,93.259 898,83 917.94,77.417 938.35,66.657 954.49,\
+56.737"];
+	"713_listItemsForSale" -> "require(bool,string)"	[pos="e,1009.4,51.409 2476.3,101.69 2463.4,97.371 2448.8,93.193 2435,91 2360.5,79.127 1150.2,101.35 1077,83 1056.2,77.796 1035,66.949 \
+1018.2,56.881"];
+	"713_relistItem" -> "require(bool,string)"	[pos="e,1009.4,51.351 1685.2,101.88 1676.3,97.522 1666,93.269 1656,91 1593.3,76.727 1139.3,98.893 1077,83 1056.3,77.714 1035,66.862 1018.3,\
+56.811"];
+	"713_delistItem" -> "require(bool,string)"	[pos="e,1009.4,51.399 2219.8,101.85 2210.7,97.48 2200.1,93.235 2190,91 2129.6,77.692 1137,98.076 1077,83 1056.2,77.782 1035,66.935 1018.2,\
+56.87"];
+	"713_purchaseItem" -> "require(bool,string)"	[pos="e,1009.4,51.404 2336.5,101.83 2325.2,97.465 2312.3,93.222 2300,91 2233.1,78.874 1142.9,99.544 1077,83 1056.2,77.789 1035,66.942 \
+1018.2,56.876"];
+	"2766_supportsInterface" -> "type()"	[pos="e,847.53,51.325 819.97,98.822 826.52,87.537 835.19,72.586 842.5,59.992"];
+	"2800_supportsInterface" -> "type()"	[pos="e,867.99,51.402 934.01,102.4 921.77,97.36 908.8,90.905 898,83 889.11,76.493 880.89,67.697 874.17,59.412"];
+}

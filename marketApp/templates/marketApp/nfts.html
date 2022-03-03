@@ -1,0 +1,145 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+<main class="px-3">
+    <section class="py-2">
+        <h3>Find NFT</h3>
+
+        <p style="display:none;" id="NFTdeployedAddress">{{NFTdeployedAddress}}</p>
+        <p style="display:none;" id="MarketplaceDeployedAddress">{{MarketplaceDeployedAddress}}</p>
+        <!-- {% if nfts %} {% for nft in nfts %}
+
+    <div>
+        <form action="{% url 'nfts' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <p style="display:none;" id="NFTdeployedAddress">{{NFTdeployedAddress}}</p>
+            <p style="display:none;" id="MarketplaceDeployedAddress">{{MarketplaceDeployedAddress}}</p>
+            <p style="display:none;" id="price-val-{{nft.tokenID}}">{{nft.price}}</p>
+            <p style="display:none;" id="itemID-val-{{nft.tokenID}}">{{nft.itemID}}</p>
+
+            <div>
+                <img class="card-img-top" src={{nft.image}} width="200" height="200" />
+                <h4><a>{{nft.name}}</a></h4>
+                <p>{{nft.description|truncatechars:30}}</p>
+                <p>Price: {{nft.price}} <i class="fab fa-ethereum"></i></p>
+            </div>
+
+            <input id="purchasedItemID-input-value-{{nft.tokenID}}" type="hidden" name="purchasedItemID" /> {% if nft.ownerAddress != userMetaMaskAddress %}
+            <input class="btn btn-outline-dark" id="buy-nft-button-{{nft.tokenID}}" value="Buy" name="buy-nft-button" type="submit" onclick="buyNFT({{nft.tokenID}})">{% endif %}
+        </form>
+    </div>
+    {% if forloop.counter|divisibleby:5 %} {% endif %} {% endfor %} {% else %}
+    <h4>No NFTs Listed.</h4>
+    {% endif %}  -->
+        {% if nfts %} {% for nft in nfts %}
+
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <form action="{% url 'nfts' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <p style="display:none;" id="NFTdeployedAddress">{{NFTdeployedAddress}}</p>
+                <p style="display:none;" id="MarketplaceDeployedAddress">{{MarketplaceDeployedAddress}}</p>
+                <p style="display:none;" id="price-val-{{nft.tokenID}}">{{nft.price}}</p>
+                <p style="display:none;" id="itemID-val-{{nft.tokenID}}">{{nft.itemID}}</p>
+
+
+                <!-- <div class="col mb-5">
+                    <div class="card h-100">
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{nft.itemID}}</div>
+                        
+                        <img class="card-img-top" src="{{nft.image}}" alt="..." />
+                        
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                
+                                <h5 class="fw-bolder">{{nft.name}}</h5>
+                                
+                {{nft.price}} <i class="fab fa-ethereum"></i>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <input id="purchasedItemID-input-value-{{nft.tokenID}}" type="hidden" name="purchasedItemID" /> {% if nft.ownerAddress != userMetaMaskAddress %}
+        <input class="btn btn-outline-dark" id="buy-nft-button-{{nft.tokenID}}" value="Buy" name="buy-nft-button" type="submit" onclick="buyNFT({{nft.tokenID}})">{% endif %} -->
+
+
+                <!-- --------------------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------------------------------------------------------------------------- -->
+                <div style="width: 300px">
+                    <button style="border: none" class="btn btn-primary-outline" type="button" data-toggle="modal" data-target="#exampleModal">
+                        <div class="card h-100">
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{nft.itemID}}</div>
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{nft.image}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{nft.name}}</h5>
+                                    <!-- Product price-->
+                                    {{nft.price}} <i class="fab fa-ethereum"></i>
+                                </div>
+                            </div>
+                            {% if nft.ownerAddress != userMetaMaskAddress %}
+                            <input class="btn btn-outline-dark" id="buy-nft-button-{{nft.tokenID}}" value="Buy" name="buy-nft-button" type="submit" onclick="buyNFT({{nft.tokenID}})">{% endif %}
+                        </div>
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>
+                                <div style="padding: 5px">
+                                    <div class="modal-body p-0 row">
+                                        <div class="modal-body"> <img class="card-img" src="{{nft.image}}" alt="..." /> </div>
+                                        <div style="padding: 5px">
+                                            <div class="details col-15 col-lg-7">
+                                                <div>
+                                                    <h3 class="fw-bolder">{{nft.name}}</h3>
+                                                    <h6>{{nft.price}} <i class="fab fa-ethereum"></i></h6>
+                                                </div>
+                                                <br>
+                                                <div>
+                                                    <p><b>CREATOR</b>
+                                                        <a style="color: #949494" target="_blank" href="https://testnet.arbiscan.io/address/{{nft.creatorAddress}}">{{nft.creatorSplice}}</a></p>
+                                                    <p> <b>SOCIAL CAUSE SUPPORTED</b></p>
+
+                                                    <b>DESCRIPTION</b>
+                                                    <div>
+                                                        <p>{{nft.description}}</p>
+                                                    </div>
+                                                    <b>DETAILS</b>
+                                                    <div>
+                                                        <p>Contract Address: <a style="color: #949494" target="_blank" href="https://testnet.arbiscan.io/address/{{MarketplaceDeployedAddress}}">{{addressSplice}}</a></p>
+                                                        <p>Token ID: {{nft.tokenID}}</p>
+                                                        <p>Token Standard: ERC-1155</p>
+                                                        <p>Chain ID: {{chainID}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- --------------------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------------------------------------------------------------------------- -->
+                <!-- --------------------------------------------------------------------------------------------------- -->
+            </form>
+        </div>
+        {% if forloop.counter|divisibleby:5 %} {% endif %} {% endfor %} {% else %}
+        <h6>No NFTs are currently listed.</h6>
+        {% endif %}
+    </section>
+    <script type="text/javascript" src="{% static 'js/buyNFT.js' %}"></script>
+
+</main>
+{% endblock %}

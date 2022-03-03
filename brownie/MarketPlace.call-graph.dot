@@ -1,0 +1,68 @@
+strict digraph {
+subgraph cluster_2812_IERC165 {
+label = "IERC165"
+"2812_supportsInterface" [label="supportsInterface"]
+}subgraph cluster_997_Ownable {
+label = "Ownable"
+"997_renounceOwnership" [label="renounceOwnership"]
+"997_constructor" [label="constructor"]
+"997_owner" [label="owner"]
+"997_transferOwnership" [label="transferOwnership"]
+"997__setOwner" [label="_setOwner"]
+"997_transferOwnership" -> "997_onlyOwner"
+"997_constructor" -> "997__setOwner"
+"997_renounceOwnership" -> "997_onlyOwner"
+"997_constructor" -> "997__msgSender"
+"997_renounceOwnership" -> "997__setOwner"
+"997_transferOwnership" -> "997__setOwner"
+}subgraph cluster_713_MarketPlace {
+label = "MarketPlace"
+"713_relistItem" [label="relistItem"]
+"713_getItemsOwned" [label="getItemsOwned"]
+"713_purchaseItem" [label="purchaseItem"]
+"713_getListedItems" [label="getListedItems"]
+"713_delistItem" [label="delistItem"]
+"713_getCurrentItemId" [label="getCurrentItemId"]
+"713_listItemsForSale" [label="listItemsForSale"]
+"713_getItemById" [label="getItemById"]
+"713_constructor" [label="constructor"]
+"713_listItem" [label="listItem"]
+"713_slitherConstructorConstantVariables" [label="slitherConstructorConstantVariables"]
+"713_listItemsForSale" -> "713_nonReentrant"
+"713_listItemsForSale" -> "713_listItem"
+"713_purchaseItem" -> "713_nonReentrant"
+}subgraph cluster_1037_ReentrancyGuard {
+label = "ReentrancyGuard"
+"1037_constructor" [label="constructor"]
+}subgraph cluster_2766_ERC165 {
+label = "ERC165"
+"2766_supportsInterface" [label="supportsInterface"]
+}subgraph cluster_2800_ERC1155Receiver {
+label = "ERC1155Receiver"
+"2800_supportsInterface" [label="supportsInterface"]
+"2800_supportsInterface" -> "2800_supportsInterface"
+}subgraph cluster_2268_Context {
+label = "Context"
+"2268__msgSender" [label="_msgSender"]
+"2268__msgData" [label="_msgData"]
+}subgraph cluster_2173_ERC1155Holder {
+label = "ERC1155Holder"
+"2173_onERC1155Received" [label="onERC1155Received"]
+"2173_onERC1155BatchReceived" [label="onERC1155BatchReceived"]
+}subgraph cluster_2431_IERC1155Receiver {
+label = "IERC1155Receiver"
+"2431_onERC1155BatchReceived" [label="onERC1155BatchReceived"]
+"2431_onERC1155Received" [label="onERC1155Received"]
+}subgraph cluster_solidity {
+label = "[Solidity]"
+"type()" 
+"require(bool,string)" 
+"2800_supportsInterface" -> "type()"
+"713_purchaseItem" -> "require(bool,string)"
+"997_transferOwnership" -> "require(bool,string)"
+"2766_supportsInterface" -> "type()"
+"713_listItemsForSale" -> "require(bool,string)"
+"713_relistItem" -> "require(bool,string)"
+"713_delistItem" -> "require(bool,string)"
+}
+}

@@ -1,0 +1,144 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+<main class="px-3">
+
+    {% if message %}
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+        <div>
+            <i class="bi bi-check-all"></i> {{message}}.
+        </div>
+    </div>
+    {% endif %}
+
+
+
+    <p style="display:none" id="NFTdeployedAddress">{{NFTdeployedAddress}}</p>
+    <p style="display:none" id="MarketplaceDeployedAddress">{{MarketplaceDeployedAddress}}</p>
+
+    {% if tokenID == 0 and tokenURL %}
+    <section class="py-2">
+        <div class="container px-4 px-lg-5 mt-5">
+            <form action="{% url 'createNFT' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <img class="card-img-top" src={{imageURL}} width="200" height="200" />
+
+                <h6> {{name}} </h6>
+
+                <p style="display:none" id="tokenURL-val">{{tokenURL}}</p>
+                <p style="display:none" id="quantity-val">{{quantity}}</p>
+                <p style="display:none" id="price-val">{{price}}</p>
+                <p style="display:none" id="price-val">{{itemID}}</p>
+                <p style="display:none" id="charityAddress-val">{{charityAddress}}</p>
+
+                <div class="form-group">
+                    <input class="form-control" type="hidden" name="name" value={{name}}>
+                    <input class="form-control" type="hidden" name="imageURL" value={{imageURL}}>
+                    <input class="form-control" type="hidden" name="description" value={{description}}>
+                    <input class="form-control" type="hidden" name="quantity" value={{quantity}}>
+                    <input class="form-control" type="hidden" name="price" value={{price}}>
+                    <input class="form-control" type="hidden" name="charityAddress" value={{charityAddress}}>
+                </div>
+
+                <div class="mb-5">
+                    <p> {{description}} </p>
+                    <p id="quantity-dis"> Quantity: {{quantity}} </p>
+                    <p id="price-dis" class="card-text"> Price: {{price}} <i class="fab fa-ethereum"></i> </p>
+                </div>
+
+                <input class="btn btn-dark mt-2" type="submit" name="mint-nft-btn" id="mint-nft button" value="Mint" onClick="mintNFT()">
+            </form>
+        </div>
+    </section>
+
+    {% elif tokenID > 0 and itemID == 0 %}
+    <section class="py-2">
+        <div class="container px-4 px-lg-5 mt-5">
+
+            <form action="{% url 'createNFT' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <img class="card-img-top" src={{imageURL}} width="200" height="200" />
+
+                <h6>{{name}}</h6>
+
+                <p style="display:none" id="tokenIDs-val-{{tokenID}}">{{tokenID}}</p>
+                <p style="display:none" id="quantity-val-{{tokenID}}">{{quantity}}</p>
+                <p style="display:none" id="price-val-{{tokenID}}">{{price}}</p>
+                <p style="display:none" id="itemID-val-{{tokenID}}">{{itemID}}</p>
+                <p style="display:none" id="charityAddress-val-{{tokenID}}">{{charityAddress}}</p>
+                <input id="isListed-input-value-{{tokenID}}" type="hidden" value="Y" name="isListed" />
+
+                <p>{{description}}</p>
+                <p id="quantity-dis-{{tokenID}}"> Quantity: {{quantity}} </p>
+                <p id="price-dis-{{tokenID}}" class="card-text"> Price: {{price}} <i class="fab fa-ethereum"></i> </p>
+
+
+                <input id="isListed-input-value-{{tokenID}}" class="btn btn-dark mt-2" type="submit" onClick="listNFT({{tokenID}})" name="list-btn" value="List" />
+            </form>
+        </div>
+    </section>
+
+    {% else %}
+
+    <!-- UPLOAD IMAGE FORM -->
+    <section class="py-2">
+        <div class="container px-4 px-lg mt-5">
+            <form action="{% url 'createNFT' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="container col-md-6">
+                    <h3>Create NFT</h3>
+                    <hr>
+                    <br>
+                    <div class="mb-5">
+                        <h5>Image</h5>
+                        <input class="form-control" type="file" name="image" id="formFile" onchange="preview()">
+                        <button onclick="clearImage()" class="btn btn-outline-dark mt-3">Remove</button>
+                        <img id="frame" src="" class="img-fluid mt-2 rounded" />
+                    </div>
+                    <div class="mb-4">
+                        <h6>Name</h6>
+                        <input class="form-control" style="height: 40px" type="text" name="name" placeholder="Item Name"></input>
+                    </div>
+                    <div class="mb-4">
+                        <h6>Description</h6>
+                        <textarea class="form-control" rows="4" name="description" placeholder="Provide a description of your NFT."></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <h6>Quantity</h6>
+                        <input class="form-control" style="height: 40px" type="number" name="quantity" placeholder="Quantity"></input>
+                    </div>
+                    <div class="mb-4">
+                        <h6>Price</h6>
+                        <input class="form-control" style="height: 40px" type="number" name="price" placeholder="Price in ETH"></input>
+                    </div>
+                    <div class="mb-4">
+                        <h6>Organization</h6>
+                        <select class="form-select" id="organization" name="organization">
+                        <option disabled selected value> </option>
+                        {% for or in organizations %}
+                            <option value="{{or.organizationName}}">{{or.organizationName}}</option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                    <input class="btn btn-dark mt-2" type="submit" name="upload-btn" value="Upload">
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function preview() {
+            frame.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        function clearImage() {
+            document.getElementById('formFile').value = null;
+            frame.src = "";
+        }
+    </script>
+
+    {% endif %}
+    <script type="text/javascript" src="{% static 'js/listNFT.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/mintNFT.js' %}"></script>
+
+</main>
+{% endblock %}

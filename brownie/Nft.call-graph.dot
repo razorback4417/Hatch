@@ -1,0 +1,130 @@
+strict digraph {
+subgraph cluster_2812_IERC165 {
+label = "IERC165"
+"2812_supportsInterface" [label="supportsInterface"]
+}subgraph cluster_997_Ownable {
+label = "Ownable"
+"997_renounceOwnership" [label="renounceOwnership"]
+"997_constructor" [label="constructor"]
+"997_owner" [label="owner"]
+"997_transferOwnership" [label="transferOwnership"]
+"997__setOwner" [label="_setOwner"]
+"997_transferOwnership" -> "997_onlyOwner"
+"997_constructor" -> "997__setOwner"
+"997_renounceOwnership" -> "997_onlyOwner"
+"997_constructor" -> "997__msgSender"
+"997_renounceOwnership" -> "997__setOwner"
+"997_transferOwnership" -> "997__setOwner"
+}subgraph cluster_2122_ERC1155 {
+label = "ERC1155"
+"2122_constructor" [label="constructor"]
+"2122__asSingletonArray" [label="_asSingletonArray"]
+"2122__doSafeBatchTransferAcceptanceCheck" [label="_doSafeBatchTransferAcceptanceCheck"]
+"2122_setApprovalForAll" [label="setApprovalForAll"]
+"2122__safeBatchTransferFrom" [label="_safeBatchTransferFrom"]
+"2122_balanceOf" [label="balanceOf"]
+"2122__doSafeTransferAcceptanceCheck" [label="_doSafeTransferAcceptanceCheck"]
+"2122_safeBatchTransferFrom" [label="safeBatchTransferFrom"]
+"2122__mintBatch" [label="_mintBatch"]
+"2122_uri" [label="uri"]
+"2122_safeTransferFrom" [label="safeTransferFrom"]
+"2122__mint" [label="_mint"]
+"2122__burnBatch" [label="_burnBatch"]
+"2122_balanceOfBatch" [label="balanceOfBatch"]
+"2122__burn" [label="_burn"]
+"2122_isApprovedForAll" [label="isApprovedForAll"]
+"2122__safeTransferFrom" [label="_safeTransferFrom"]
+"2122__setURI" [label="_setURI"]
+"2122_supportsInterface" [label="supportsInterface"]
+"2122__beforeTokenTransfer" [label="_beforeTokenTransfer"]
+"2122_setApprovalForAll" -> "2122__msgSender"
+"2122__mint" -> "2122__msgSender"
+"2122__mint" -> "2122__beforeTokenTransfer"
+"2122_balanceOfBatch" -> "2122_balanceOf"
+"2122__mintBatch" -> "2122__msgSender"
+"2122__mintBatch" -> "2122__doSafeBatchTransferAcceptanceCheck"
+"2122__safeBatchTransferFrom" -> "2122__doSafeBatchTransferAcceptanceCheck"
+"2122__safeTransferFrom" -> "2122__doSafeTransferAcceptanceCheck"
+"2122_constructor" -> "2122__setURI"
+"2122__safeTransferFrom" -> "2122__beforeTokenTransfer"
+"2122_safeTransferFrom" -> "2122__safeTransferFrom"
+"2122_safeTransferFrom" -> "2122__msgSender"
+"2122_safeBatchTransferFrom" -> "2122__msgSender"
+"2122__burn" -> "2122__asSingletonArray"
+"2122__safeBatchTransferFrom" -> "2122__beforeTokenTransfer"
+"2122__safeTransferFrom" -> "2122__asSingletonArray"
+"2122_safeBatchTransferFrom" -> "2122__safeBatchTransferFrom"
+"2122__mintBatch" -> "2122__beforeTokenTransfer"
+"2122_supportsInterface" -> "2122_supportsInterface"
+"2122__mint" -> "2122__doSafeTransferAcceptanceCheck"
+"2122__burnBatch" -> "2122__msgSender"
+"2122__burnBatch" -> "2122__beforeTokenTransfer"
+"2122__mint" -> "2122__asSingletonArray"
+"2122__safeTransferFrom" -> "2122__msgSender"
+"2122__safeBatchTransferFrom" -> "2122__msgSender"
+"2122_safeBatchTransferFrom" -> "2122_isApprovedForAll"
+"2122_safeTransferFrom" -> "2122_isApprovedForAll"
+"2122__burn" -> "2122__beforeTokenTransfer"
+"2122__burn" -> "2122__msgSender"
+}subgraph cluster_1037_ReentrancyGuard {
+label = "ReentrancyGuard"
+"1037_constructor" [label="constructor"]
+}subgraph cluster_2446_IERC1155MetadataURI {
+label = "IERC1155MetadataURI"
+"2446_uri" [label="uri"]
+}subgraph cluster_2766_ERC165 {
+label = "ERC165"
+"2766_supportsInterface" [label="supportsInterface"]
+}subgraph cluster_2390_IERC1155 {
+label = "IERC1155"
+"2390_balanceOfBatch" [label="balanceOfBatch"]
+"2390_setApprovalForAll" [label="setApprovalForAll"]
+"2390_balanceOf" [label="balanceOf"]
+"2390_safeTransferFrom" [label="safeTransferFrom"]
+"2390_isApprovedForAll" [label="isApprovedForAll"]
+"2390_safeBatchTransferFrom" [label="safeBatchTransferFrom"]
+}subgraph cluster_2268_Context {
+label = "Context"
+"2268__msgSender" [label="_msgSender"]
+"2268__msgData" [label="_msgData"]
+}subgraph cluster_893_Nft {
+label = "Nft"
+"893_setTokenURI" [label="setTokenURI"]
+"893_mintToken" [label="mintToken"]
+"893_getTokenURI" [label="getTokenURI"]
+"893_getCurrentTokenID" [label="getCurrentTokenID"]
+"893_constructor" [label="constructor"]
+"893_checkIfOwner" [label="checkIfOwner"]
+"893_slitherConstructorConstantVariables" [label="slitherConstructorConstantVariables"]
+"893_setTokenURI" -> "893_checkIfOwner"
+"893_checkIfOwner" -> "893_balanceOf"
+"893_mintToken" -> "893_nonReentrant"
+"893_mintToken" -> "893_setApprovalForAll"
+"893_mintToken" -> "893__mint"
+"893_mintToken" -> "893_setTokenURI"
+"893_constructor" -> "893_constructor"
+}subgraph cluster_solidity {
+label = "[Solidity]"
+"type()" 
+"require(bool,string)" 
+"revert(string)" 
+"893_constructor" -> "require(bool,string)"
+"997_transferOwnership" -> "require(bool,string)"
+"2122__mint" -> "require(bool,string)"
+"2122__safeTransferFrom" -> "require(bool,string)"
+"2122__burn" -> "require(bool,string)"
+"2122_safeBatchTransferFrom" -> "require(bool,string)"
+"2122__safeBatchTransferFrom" -> "require(bool,string)"
+"2122__doSafeTransferAcceptanceCheck" -> "revert(string)"
+"2766_supportsInterface" -> "type()"
+"2122__doSafeBatchTransferAcceptanceCheck" -> "revert(string)"
+"2122__burnBatch" -> "require(bool,string)"
+"2122_balanceOf" -> "require(bool,string)"
+"2122_supportsInterface" -> "type()"
+"2122_balanceOfBatch" -> "require(bool,string)"
+"2122__mintBatch" -> "require(bool,string)"
+"2122_setApprovalForAll" -> "require(bool,string)"
+"2122_safeTransferFrom" -> "require(bool,string)"
+"893_setTokenURI" -> "require(bool,string)"
+}
+}

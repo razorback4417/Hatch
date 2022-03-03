@@ -1,0 +1,13 @@
+strict digraph {
+subgraph cluster_2247_Counters {
+label = "Counters"
+"2247_current" [label="current"]
+"2247_increment" [label="increment"]
+"2247_reset" [label="reset"]
+"2247_decrement" [label="decrement"]
+}subgraph cluster_solidity {
+label = "[Solidity]"
+"require(bool,string)" 
+"2247_decrement" -> "require(bool,string)"
+}
+}
