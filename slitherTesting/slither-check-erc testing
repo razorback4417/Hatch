@@ -1,0 +1,101 @@
+Last login: Sat Apr 23 18:46:52 on ttys016
+theol@T-Air ~ % cd Documents/blockchainProject/brownie 
+theol@T-Air brownie % slither-check-erc . --erc ERC1155 Nft        
+# Check Nft
+
+## Check functions
+[✓] safeTransferFrom(address,address,uint256,uint256,bytes) is present
+	[✓] safeTransferFrom(address,address,uint256,uint256,bytes) -> () (correct return type)
+	[✓] TransferSingle(address,address,address,uint256,uint256) is emitted
+[✓] safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) is present
+	[✓] safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) -> () (correct return type)
+[✓] balanceOf(address,uint256) is present
+	[✓] balanceOf(address,uint256) -> () (correct return value)
+	[✓] balanceOf(address,uint256) is view
+[✓] balanceOfBatch(address[],uint256[]) is present
+	[✓] balanceOfBatch(address[],uint256[]) -> () (correct return value)
+	[✓] balanceOfBatch(address[],uint256[]) is view
+[✓] setApprovalForAll(address,bool) is present
+	[✓] setApprovalForAll(address,bool) -> () (correct return type)
+	[✓] ApprovalForAll(address,address,bool) is emitted
+[✓] isApprovedForAll(address,address) is present
+	[✓] isApprovedForAll(address,address) -> () (correct return value)
+	[✓] isApprovedForAll(address,address) is view
+[✓] supportsInterface(bytes4) is present
+	[✓] supportsInterface(bytes4) -> () (correct return value)
+	[✓] supportsInterface(bytes4) is view
+[✓] onERC1155Received(address,address,uint256,uint256,bytes) is present
+	[✓] onERC1155Received(address,address,uint256,uint256,bytes) -> () (correct return value)
+[✓] onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) is present
+	[✓] onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) -> () (correct return value)
+[✓] uri(uint256) is present
+	[✓] uri(uint256) -> () (correct return value)
+	[✓] uri(uint256) is view
+
+## Check events
+[✓] TransferSingle(address,address,address,uint256,uint256) is present
+	[✓] parameter 0 is indexed
+	[✓] parameter 1 is indexed
+	[✓] parameter 2 is indexed
+[✓] TransferBatch(address,address,address,uint256[],uint256[]) is present
+	[✓] parameter 0 is indexed
+	[✓] parameter 1 is indexed
+	[✓] parameter 2 is indexed
+[✓] ApprovalForAll(address,address,bool) is present
+	[✓] parameter 0 is indexed
+	[✓] parameter 1 is indexed
+[✓] URI(string,uint256) is present
+	[✓] parameter 1 is indexed
+
+
+[✓] safeBatchTransferFrom emit TransferSingle or TransferBatch
+theol@T-Air brownie % slither-check-erc . --erc ERC1155 MarketPlace
+# Check MarketPlace
+
+## Check functions
+[✓] safeTransferFrom(address,address,uint256,uint256,bytes) is present
+	[✓] safeTransferFrom(address,address,uint256,uint256,bytes) -> () (correct return type)
+	[✓] TransferSingle(address,address,address,uint256,uint256) is emitted
+[✓] safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) is present
+	[✓] safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) -> () (correct return type)
+[✓] balanceOf(address,uint256) is present
+	[✓] balanceOf(address,uint256) -> () (correct return value)
+	[✓] balanceOf(address,uint256) is view
+[✓] balanceOfBatch(address[],uint256[]) is present
+	[✓] balanceOfBatch(address[],uint256[]) -> () (correct return value)
+	[✓] balanceOfBatch(address[],uint256[]) is view
+[✓] setApprovalForAll(address,bool) is present
+	[✓] setApprovalForAll(address,bool) -> () (correct return type)
+	[✓] ApprovalForAll(address,address,bool) is emitted
+[✓] isApprovedForAll(address,address) is present
+	[✓] isApprovedForAll(address,address) -> () (correct return value)
+	[✓] isApprovedForAll(address,address) is view
+[✓] supportsInterface(bytes4) is present
+	[✓] supportsInterface(bytes4) -> () (correct return value)
+	[✓] supportsInterface(bytes4) is view
+[✓] onERC1155Received(address,address,uint256,uint256,bytes) is present
+	[✓] onERC1155Received(address,address,uint256,uint256,bytes) -> () (correct return value)
+[✓] onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) is present
+	[✓] onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) -> () (correct return value)
+[✓] uri(uint256) is present
+	[✓] uri(uint256) -> () (correct return value)
+	[✓] uri(uint256) is view
+
+## Check events
+[✓] TransferSingle(address,address,address,uint256,uint256) is present
+	[✓] parameter 0 is indexed
+	[✓] parameter 1 is indexed
+	[✓] parameter 2 is indexed
+[✓] TransferBatch(address,address,address,uint256[],uint256[]) is present
+	[✓] parameter 0 is indexed
+	[✓] parameter 1 is indexed
+	[✓] parameter 2 is indexed
+[✓] ApprovalForAll(address,address,bool) is present
+	[✓] parameter 0 is indexed
+	[✓] parameter 1 is indexed
+[✓] URI(string,uint256) is present
+	[✓] parameter 1 is indexed
+
+
+[✓] safeBatchTransferFrom emit TransferSingle or TransferBatch
+theol@T-Air brownie % 

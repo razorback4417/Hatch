@@ -1,0 +1,58 @@
+theol@T-Air brownie % slither . --exclude-high --exclude-low --exclude-informational --exclude-optimization   
+Brownie v1.17.2 - Python development framework for Ethereum
+
+Compiling contracts...
+  Solc version: 0.8.3
+  Optimizer: Enabled  Runs: 200
+  EVM Version: Istanbul
+Generating build data...
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Ownable
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ReentrancyGuard
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155Receiver
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155MetadataURI
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155Holder
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155Receiver
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Address
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Context
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Counters
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC165
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC165
+ - marketplace
+ - nft
+
+Project has been compiled. Build artifacts saved at /Users/theol/Documents/blockchainProject/brownie/build/contracts
+
+
+Reentrancy in marketplace.purchaseItem(address,uint256) (contracts/marketplace.sol#103-149):
+	External calls:
+	- IERC1155(nftAddress).safeTransferFrom(address(this),msg.sender,_tokenId,1,0x00) (contracts/marketplace.sol#120-126)
+	- IERC1155(nftAddress).setApprovalForAll(msg.sender,true) (contracts/marketplace.sol#128)
+	State variables written after the call(s):
+	- itemsMapping[_itemId].owner = address(msg.sender) (contracts/marketplace.sol#130)
+	- itemsMapping[_itemId].isListed = false (contracts/marketplace.sol#132)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-1
+
+-------------------------------------------------------------------------------------------
+FIXED: Added modifier nonReentrant as part of OpenZeppelin ReentrancyGuard.sol
+-------------------------------------------------------------------------------------------
+
+ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#410) is a local variable never initialized
+ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#432) is a local variable never initialized
+ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#414) is a local variable never initialized
+ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#437) is a local variable never initialized
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables
+
+-------------------------------------------------------------------------------------------
+FIXED: Not applicable. ERC1155 contract functions are from OZ library
+-------------------------------------------------------------------------------------------
+
+ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#401-420) ignores return value by IERC1155Receiver(to).onERC1155Received(operator,from,id,amount,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#410-418)
+ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#422-443) ignores return value by IERC1155Receiver(to).onERC1155BatchReceived(operator,from,ids,amounts,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#431-441)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+. analyzed (15 contracts with 20 detectors), 7 result(s) found
+
+-------------------------------------------------------------------------------------------
+FIXED: Not applicable. ERC1155 contract functions are from OZ library
+-------------------------------------------------------------------------------------------

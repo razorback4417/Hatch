@@ -1,0 +1,97 @@
+theol@T-Air brownie % slither . --exclude-high --exclude-medium --exclude-informational --exclude-optimization
+Brownie v1.17.2 - Python development framework for Ethereum
+
+Compiling contracts...
+  Solc version: 0.8.3
+  Optimizer: Enabled  Runs: 200
+  EVM Version: Istanbul
+Generating build data...
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Ownable
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ReentrancyGuard
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155Receiver
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155MetadataURI
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155Holder
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155Receiver
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Address
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Context
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Counters
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC165
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC165
+ - marketplace
+ - nft
+
+Project has been compiled. Build artifacts saved at /Users/theol/Documents/blockchainProject/brownie/build/contracts
+
+
+marketplace.purchaseItem(address,uint256).owner (contracts/marketplace.sol#111) shadows:
+	- Ownable.owner() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol#34-36) (function)
+nft.setTokenURI(uint256,string).owner (contracts/nft.sol#38) shadows:
+	- Ownable.owner() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol#34-36) (function)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#local-variable-shadowing
+
+-------------------------------------------------------------------------------------------
+FIXED: Replaced 'owner' variables in marketplace and nft smart contracts.
+-------------------------------------------------------------------------------------------
+
+nft.constructor(address).marketAddress (contracts/nft.sol#16) lacks a zero-check on :
+		- marketplaceAddress = marketAddress (contracts/nft.sol#17)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+
+-------------------------------------------------------------------------------------------
+FIXED: Added in condition to check whether marketAddress was 0x0
+-------------------------------------------------------------------------------------------
+
+marketplace.listItem(address,address,uint256,uint256) (contracts/marketplace.sol#63-101) has external calls inside a loop: IERC1155(nftAddress).safeTransferFrom(msg.sender,address(this),_tokenId,1,0x00) (contracts/marketplace.sol#83-89)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop
+
+-------------------------------------------------------------------------------------------
+FIXED: Moved IERC1155(nftAddress).safeTransferFrom() outside of listItem()
+-------------------------------------------------------------------------------------------
+
+Variable 'ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#410)' in ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#401-420) potentially used before declaration: response != IERC1155Receiver(to).onERC1155Received.selector (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#411)
+Variable 'ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#414)' in ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#401-420) potentially used before declaration: revert(string)(reason) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#415)
+Variable 'ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#432)' in ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#422-443) potentially used before declaration: response != IERC1155Receiver(to).onERC1155BatchReceived.selector (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#434)
+Variable 'ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#437)' in ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#422-443) potentially used before declaration: revert(string)(reason) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#438)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#pre-declaration-usage-of-local-variables
+
+-------------------------------------------------------------------------------------------
+FIXED: Not applicable. ERC1155 contract functions are from OZ library
+-------------------------------------------------------------------------------------------
+
+Reentrancy in nft.mintToken(string,uint256,bytes) (contracts/nft.sol#20-35):
+	External calls:
+	- _mint(msg.sender,currentTokenId,quantity,data) (contracts/nft.sol#28)
+		- IERC1155Receiver(to).onERC1155Received(operator,from,id,amount,data) 
+		(../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#410-418)
+	State variables written after the call(s):
+	- setApprovalForAll(marketplaceAddress,true) (contracts/nft.sol#30)
+		- _operatorApprovals[_msgSender()][operator] = approved 
+		(../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#105)
+	- setTokenURI(currentTokenId,tokenURI) (contracts/nft.sol#32)
+		- _uris[_tokenId] = newURI (contracts/nft.sol#41)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2
+
+-------------------------------------------------------------------------------------------
+FIXED: Added modifier nonReentrant as part of OpenZeppelin ReentrancyGuard.sol
+-------------------------------------------------------------------------------------------
+
+Reentrancy in marketplace.listItem(address,address,uint256,uint256) (contracts/marketplace.sol#63-101):
+	External calls:
+	- IERC1155(nftAddress).safeTransferFrom(msg.sender,address(this),_tokenId,1,0x00) (contracts/marketplace.sol#83-89)
+	Event emitted after the call(s):
+	- ItemListed(nftAddress,_tokenId,itemId,msg.sender,msg.sender,address(0),_charity,_price,true) (contracts/marketplace.sol#90-100)
+Reentrancy in nft.mintToken(string,uint256,bytes) (contracts/nft.sol#20-35):
+	External calls:
+	- _mint(msg.sender,currentTokenId,quantity,data) (contracts/nft.sol#28)
+		- IERC1155Receiver(to).onERC1155Received(operator,from,id,amount,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#410-418)
+	Event emitted after the call(s):
+	- ApprovalForAll(_msgSender(),operator,approved) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#106)
+		- setApprovalForAll(marketplaceAddress,true) (contracts/nft.sol#30)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+. analyzed (15 contracts with 14 detectors), 11 result(s) found
+
+-------------------------------------------------------------------------------------------
+FIXED: Added modifier nonReentrant as part of OpenZeppelin ReentrancyGuard.sol
+-------------------------------------------------------------------------------------------

@@ -1,0 +1,91 @@
+Last login: Sat Apr 23 18:03:45 on ttys010
+theol@T-Air brownie % slither . --exclude-optimization --exclude-high --exclude-medium --exclude-informational
+Brownie v1.17.2 - Python development framework for Ethereum
+
+Compiling contracts...
+  Solc version: 0.8.3
+  Optimizer: Enabled  Runs: 200
+  EVM Version: Istanbul
+Generating build data...
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/OwnableUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1967UpgradeUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IBeaconUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/Initializable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/UUPSUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/PausableUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ReentrancyGuardUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155ReceiverUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155MetadataURIUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155HolderUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155ReceiverUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/AddressUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ContextUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/CountersUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/StorageSlotUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC165Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC165Upgradeable
+ - MarketPlace
+ - Nft
+
+Project has been compiled. Build artifacts saved at /Users/theol/Documents/blockchainProject/brownie/build/contracts
+
+
+Nft.initialize(address).marketAddress (contracts/Nft.sol#37) lacks a zero-check on :
+		- marketplaceAddress = marketAddress (contracts/Nft.sol#42)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+
+-------------------------------------------------------------------------------------------
+FIXED: Added conditional statement that requires the marketAddress != 0
+-------------------------------------------------------------------------------------------
+
+Variable 'ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#417)' in ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#408-427) potentially used before declaration: response != IERC1155ReceiverUpgradeable(to).onERC1155Received.selector (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#418)
+Variable 'ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#421)' in ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#408-427) potentially used before declaration: revert(string)(reason) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#422)
+Variable 'ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#439)' in ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#429-450) potentially used before declaration: response != IERC1155ReceiverUpgradeable(to).onERC1155BatchReceived.selector (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#441)
+Variable 'ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#444)' in ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#429-450) potentially used before declaration: revert(string)(reason) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#445)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#pre-declaration-usage-of-local-variables
+
+-------------------------------------------------------------------------------------------
+FIXED: Not applicable since it's from OZ libraries
+-------------------------------------------------------------------------------------------
+
+Reentrancy in Nft.mintToken(string,uint256,bytes) (contracts/Nft.sol#84-100):
+	External calls:
+	- _mint(msg.sender,currentTokenId,quantity,data) (contracts/Nft.sol#92)
+		- IERC1155ReceiverUpgradeable(to).onERC1155Received(operator,from,id,amount,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#417-425)
+	State variables written after the call(s):
+	- setApprovalForAll(marketplaceAddress,true) (contracts/Nft.sol#94)
+		- _operatorApprovals[_msgSender()][operator] = approved (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#112)
+	- _setURI(tokenURI) (contracts/Nft.sol#96)
+		- _uri = newuri (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#255)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2
+
+-------------------------------------------------------------------------------------------
+FIXED: Added nonReentrant modifier
+-------------------------------------------------------------------------------------------
+
+Reentrancy in ERC1967UpgradeUpgradeable._upgradeToAndCallSecure(address,bytes,bool) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#86-114):
+	External calls:
+	- _functionDelegateCall(newImplementation,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#96)
+		- (success,returndata) = target.delegatecall(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#211)
+	- _functionDelegateCall(newImplementation,abi.encodeWithSignature(upgradeTo(address),oldImplementation)) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#104-107)
+		- (success,returndata) = target.delegatecall(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#211)
+	Event emitted after the call(s):
+	- Upgraded(newImplementation) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#62)
+		- _upgradeTo(newImplementation) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#112)
+Reentrancy in Nft.mintToken(string,uint256,bytes) (contracts/Nft.sol#84-100):
+	External calls:
+	- _mint(msg.sender,currentTokenId,quantity,data) (contracts/Nft.sol#92)
+		- IERC1155ReceiverUpgradeable(to).onERC1155Received(operator,from,id,amount,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#417-425)
+	Event emitted after the call(s):
+	- ApprovalForAll(_msgSender(),operator,approved) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#113)
+		- setApprovalForAll(marketplaceAddress,true) (contracts/Nft.sol#94)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+
+-------------------------------------------------------------------------------------------
+FIXED: Added nonReentrant modifier
+-------------------------------------------------------------------------------------------
+
+. analyzed (21 contracts with 14 detectors), 8 result(s) found
+theol@T-Air brownie % 

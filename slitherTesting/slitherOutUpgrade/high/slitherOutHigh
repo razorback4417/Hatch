@@ -1,0 +1,71 @@
+Last login: Sat Apr 23 17:47:51 on ttys007
+theol@T-Air brownie % slither . --exclude-optimization --exclude-medium --exclude-low --exclude-informational
+Brownie v1.17.2 - Python development framework for Ethereum
+
+Compiling contracts...
+  Solc version: 0.8.3
+  Optimizer: Enabled  Runs: 200
+  EVM Version: Istanbul
+Generating build data...
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/OwnableUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1967UpgradeUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IBeaconUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/Initializable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/UUPSUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/PausableUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ReentrancyGuardUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155ReceiverUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155MetadataURIUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155HolderUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155ReceiverUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/AddressUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ContextUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/CountersUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/StorageSlotUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC165Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC165Upgradeable
+ - MarketPlace
+ - Nft
+
+Project has been compiled. Build artifacts saved at /Users/theol/Documents/blockchainProject/brownie/build/contracts
+
+
+ERC1967UpgradeUpgradeable._functionDelegateCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#207-213) uses delegatecall to a input-controlled function id
+	- (success,returndata) = target.delegatecall(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#211)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#controlled-delegatecall
+
+-------------------------------------------------------------------------------------------
+FIXED: Not applicable since it's from OZ libraries
+-------------------------------------------------------------------------------------------
+
+ERC1155Upgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#458) shadows:
+	- ERC165Upgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#35)
+	- ContextUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#30)
+ERC1155ReceiverUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol#26) shadows:
+	- ERC165Upgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#35)
+PausableUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/PausableUpgradeable.sol#96) shadows:
+	- ContextUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#30)
+OwnableUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#77) shadows:
+	- ContextUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#30)
+UUPSUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#64) shadows:
+	- ERC1967UpgradeUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#233)
+ERC1155HolderUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#39) shadows:
+	- ERC1155ReceiverUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol#26)
+	- ERC165Upgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#35)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variable-shadowing
+
+-------------------------------------------------------------------------------------------
+FIXED: Not applicable since it's from OZ libraries
+-------------------------------------------------------------------------------------------
+
+MarketPlace (contracts/MarketPlace.sol#25-505) is an upgradeable contract that does not protect its initiliaze functions: MarketPlace.initialize() (contracts/MarketPlace.sol#58-66). Anyone can delete the contract with: UUPSUpgradeable.upgradeTo(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#35-38)UUPSUpgradeable.upgradeToAndCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#48-51)Nft (contracts/Nft.sol#23-144) is an upgradeable contract that does not protect its initiliaze functions: Nft.initialize(address) (contracts/Nft.sol#37-44). Anyone can delete the contract with: UUPSUpgradeable.upgradeTo(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#35-38)UUPSUpgradeable.upgradeToAndCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#48-51)Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unprotected-upgradeable-contract
+
+-------------------------------------------------------------------------------------------
+FIXED: Constructor added so that initialize can not be called in the contract
+-------------------------------------------------------------------------------------------
+
+
+. analyzed (21 contracts with 22 detectors), 9 result(s) found
+theol@T-Air brownie % 

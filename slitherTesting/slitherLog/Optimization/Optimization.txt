@@ -1,0 +1,80 @@
+theol@T-Air brownie % slither . --exclude-high --exclude-medium --exclude-low --exclude-informational
+Brownie v1.17.2 - Python development framework for Ethereum
+
+Compiling contracts...
+  Solc version: 0.8.3
+  Optimizer: Enabled  Runs: 200
+  EVM Version: Istanbul
+Generating build data...
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Ownable
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ReentrancyGuard
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155Receiver
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155MetadataURI
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155Holder
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155Receiver
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Address
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Context
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Counters
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC165
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC165
+ - marketplace
+ - nft
+
+Project has been compiled. Build artifacts saved at /Users/theol/Documents/blockchainProject/brownie/build/contracts
+
+
+listItemsForSale(address,address,uint256,uint256,uint256) should be declared external:
+	- marketplace.listItemsForSale(address,address,uint256,uint256,uint256) (contracts/marketplace.sol#50-61)
+purchaseItem(address,uint256) should be declared external:
+	- marketplace.purchaseItem(address,uint256) (contracts/marketplace.sol#103-149)
+getItemsOwned(address) should be declared external:
+	- marketplace.getItemsOwned(address) (contracts/marketplace.sol#151-177)
+getListedItems() should be declared external:
+	- marketplace.getListedItems() (contracts/marketplace.sol#179-201)
+delistItem(uint256) should be declared external:
+	- marketplace.delistItem(uint256) (contracts/marketplace.sol#203-208)
+relistItem(address,uint256,uint256) should be declared external:
+	- marketplace.relistItem(address,uint256,uint256) (contracts/marketplace.sol#210-219)
+getCurrentItemId() should be declared external:
+	- marketplace.getCurrentItemId() (contracts/marketplace.sol#221-223)
+getItemById(uint256) should be declared external:
+	- marketplace.getItemById(uint256) (contracts/marketplace.sol#225-227)
+mintToken(string,uint256,bytes) should be declared external:
+	- nft.mintToken(string,uint256,bytes) (contracts/nft.sol#20-35)
+getCurrentTokenID() should be declared external:
+	- nft.getCurrentTokenID() (contracts/nft.sol#51-54)
+getTokenURI(uint256) should be declared external:
+	- nft.getTokenURI(uint256) (contracts/nft.sol#56-58)
+
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external
+
+-------------------------------------------------------------------------------------------
+FIXED: Use the external attribute for functions never called from the contract.
+-------------------------------------------------------------------------------------------
+
+
+onERC1155Received(address,address,uint256,uint256,bytes) should be declared external:
+	- ERC1155Holder.onERC1155Received(address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/utils/ERC1155Holder.sol#11-19)
+onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) should be declared external:
+	- ERC1155Holder.onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/utils/ERC1155Holder.sol#21-29)
+uri(uint256) should be declared external:
+	- ERC1155.uri(uint256) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#58-60)
+balanceOfBatch(address[],uint256[]) should be declared external:
+	- ERC1155.balanceOfBatch(address[],uint256[]) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#81-97)
+safeTransferFrom(address,address,uint256,uint256,bytes) should be declared external:
+	- ERC1155.safeTransferFrom(address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#119-131)
+safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) should be declared external:
+	- ERC1155.safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#136-148)
+renounceOwnership() should be declared external:
+	- Ownable.renounceOwnership() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol#53-55)
+transferOwnership(address) should be declared external:
+	- Ownable.transferOwnership(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol#61-64)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external
+. analyzed (15 contracts with 2 detectors), 19 result(s) found
+
+-------------------------------------------------------------------------------------------
+FIXED: Not applicable. ERC1155 contract functions are from OZ library
+-------------------------------------------------------------------------------------------
+

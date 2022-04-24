@@ -1,0 +1,297 @@
+Last login: Sat Apr 23 17:46:39 on ttys008
+theol@T-Air ~ % cd Documents/blockchainProject/
+theol@T-Air blockchainProject % cd brownie 
+theol@T-Air brownie % slither .
+Brownie v1.17.2 - Python development framework for Ethereum
+
+Compiling contracts...
+  Solc version: 0.8.3
+  Optimizer: Enabled  Runs: 200
+  EVM Version: Istanbul
+Generating build data...
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/OwnableUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1967UpgradeUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IBeaconUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/Initializable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/UUPSUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/PausableUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ReentrancyGuardUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155ReceiverUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155MetadataURIUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155HolderUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155ReceiverUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/AddressUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ContextUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/CountersUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/StorageSlotUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC165Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC165Upgradeable
+ - MarketPlace
+ - Nft
+
+Project has been compiled. Build artifacts saved at /Users/theol/Documents/blockchainProject/brownie/build/contracts
+
+
+ERC1967UpgradeUpgradeable._functionDelegateCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#207-213) uses delegatecall to a input-controlled function id
+	- (success,returndata) = target.delegatecall(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#211)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#controlled-delegatecall
+
+ERC1155Upgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#458) shadows:
+	- ERC165Upgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#35)
+	- ContextUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#30)
+ERC1155ReceiverUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol#26) shadows:
+	- ERC165Upgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#35)
+PausableUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/PausableUpgradeable.sol#96) shadows:
+	- ContextUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#30)
+OwnableUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#77) shadows:
+	- ContextUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#30)
+UUPSUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#64) shadows:
+	- ERC1967UpgradeUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#233)
+ERC1155HolderUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#39) shadows:
+	- ERC1155ReceiverUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol#26)
+	- ERC165Upgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#35)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variable-shadowing
+
+MarketPlace (contracts/MarketPlace.sol#25-505) is an upgradeable contract that does not protect its initiliaze functions: MarketPlace.initialize() (contracts/MarketPlace.sol#58-66). Anyone can delete the contract with: UUPSUpgradeable.upgradeTo(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#35-38)UUPSUpgradeable.upgradeToAndCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#48-51)Nft (contracts/Nft.sol#23-144) is an upgradeable contract that does not protect its initiliaze functions: Nft.initialize(address) (contracts/Nft.sol#37-44). Anyone can delete the contract with: UUPSUpgradeable.upgradeTo(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#35-38)UUPSUpgradeable.upgradeToAndCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#48-51)Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unprotected-upgradeable-contract
+
+Reentrancy in MarketPlace.purchaseItem(address,uint256) (contracts/MarketPlace.sol#219-276):
+	External calls:
+	- IERC1155Upgradeable(nftAddress).safeTransferFrom(address(this),msg.sender,tokenId,1,0x00) (contracts/MarketPlace.sol#242-248)
+	- IERC1155Upgradeable(nftAddress).setApprovalForAll(msg.sender,true) (contracts/MarketPlace.sol#251)
+	State variables written after the call(s):
+	- itemsMapping[itemId].ownerAddress = address(msg.sender) (contracts/MarketPlace.sol#254)
+	- itemsMapping[itemId].isListed = false (contracts/MarketPlace.sol#257)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-1
+
+MarketPlace.listItemsForSale(address,address,uint256,uint256,uint256,uint256) (contracts/MarketPlace.sol#149-172) contains a tautology or contradiction:
+	- require(bool,string)(contribution >= 0 && contribution <= 100,Contribution percentage must be in range of 0-100) (contracts/MarketPlace.sol#158-161)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#tautology-or-contradiction
+
+ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#444) is a local variable never initialized
+ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#417) is a local variable never initialized
+ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#439) is a local variable never initialized
+ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#421) is a local variable never initialized
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables
+
+ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#408-427) ignores return value by IERC1155ReceiverUpgradeable(to).onERC1155Received(operator,from,id,amount,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#417-425)
+ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#429-450) ignores return value by IERC1155ReceiverUpgradeable(to).onERC1155BatchReceived(operator,from,ids,amounts,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#438-448)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+
+Nft.initialize(address).marketAddress (contracts/Nft.sol#37) lacks a zero-check on :
+		- marketplaceAddress = marketAddress (contracts/Nft.sol#42)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+
+Variable 'ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#417)' in ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#408-427) potentially used before declaration: response != IERC1155ReceiverUpgradeable(to).onERC1155Received.selector (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#418)
+Variable 'ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#421)' in ERC1155Upgradeable._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#408-427) potentially used before declaration: revert(string)(reason) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#422)
+Variable 'ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#439)' in ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#429-450) potentially used before declaration: response != IERC1155ReceiverUpgradeable(to).onERC1155BatchReceived.selector (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#441)
+Variable 'ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#444)' in ERC1155Upgradeable._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#429-450) potentially used before declaration: revert(string)(reason) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#445)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#pre-declaration-usage-of-local-variables
+
+Reentrancy in Nft.mintToken(string,uint256,bytes) (contracts/Nft.sol#84-100):
+	External calls:
+	- _mint(msg.sender,currentTokenId,quantity,data) (contracts/Nft.sol#92)
+		- IERC1155ReceiverUpgradeable(to).onERC1155Received(operator,from,id,amount,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#417-425)
+	State variables written after the call(s):
+	- setApprovalForAll(marketplaceAddress,true) (contracts/Nft.sol#94)
+		- _operatorApprovals[_msgSender()][operator] = approved (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#112)
+	- _setURI(tokenURI) (contracts/Nft.sol#96)
+		- _uri = newuri (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#255)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2
+
+Reentrancy in ERC1967UpgradeUpgradeable._upgradeToAndCallSecure(address,bytes,bool) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#86-114):
+	External calls:
+	- _functionDelegateCall(newImplementation,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#96)
+		- (success,returndata) = target.delegatecall(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#211)
+	- _functionDelegateCall(newImplementation,abi.encodeWithSignature(upgradeTo(address),oldImplementation)) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#104-107)
+		- (success,returndata) = target.delegatecall(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#211)
+	Event emitted after the call(s):
+	- Upgraded(newImplementation) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#62)
+		- _upgradeTo(newImplementation) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#112)
+Reentrancy in Nft.mintToken(string,uint256,bytes) (contracts/Nft.sol#84-100):
+	External calls:
+	- _mint(msg.sender,currentTokenId,quantity,data) (contracts/Nft.sol#92)
+		- IERC1155ReceiverUpgradeable(to).onERC1155Received(operator,from,id,amount,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#417-425)
+	Event emitted after the call(s):
+	- ApprovalForAll(_msgSender(),operator,approved) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#113)
+		- setApprovalForAll(marketplaceAddress,true) (contracts/Nft.sol#94)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+
+ERC1967UpgradeUpgradeable._verifyCallResult(bool,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#215-232) uses assembly
+	- INLINE ASM (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#224-227)
+AddressUpgradeable.isContract(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#26-36) uses assembly
+	- INLINE ASM (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#32-34)
+AddressUpgradeable._verifyCallResult(bool,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#162-182) uses assembly
+	- INLINE ASM (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#174-177)
+StorageSlotUpgradeable.getAddressSlot(bytes32) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#51-55) uses assembly
+	- INLINE ASM (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#52-54)
+StorageSlotUpgradeable.getBooleanSlot(bytes32) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#60-64) uses assembly
+	- INLINE ASM (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#61-63)
+StorageSlotUpgradeable.getBytes32Slot(bytes32) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#69-73) uses assembly
+	- INLINE ASM (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#70-72)
+StorageSlotUpgradeable.getUint256Slot(bytes32) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#78-82) uses assembly
+	- INLINE ASM (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#79-81)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#assembly-usage
+
+Different versions of Solidity is used:
+	- Version used: ['^0.8.0', '^0.8.2', '^0.8.3']
+	- ^0.8.3 (contracts/MarketPlace.sol#2)
+	- ^0.8.3 (contracts/Nft.sol#2)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/extensions/IERC1155MetadataURIUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/IERC165Upgradeable.sol#3)
+	- ^0.8.2 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/PausableUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/Initializable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/IERC1155ReceiverUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/beacon/IBeaconUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/ReentrancyGuardUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/IERC1155Upgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/CountersUpgradeable.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#3)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#different-pragma-directives-are-used
+
+AddressUpgradeable._verifyCallResult(bool,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#162-182) is never used and should be removed
+AddressUpgradeable.functionCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#79-81) is never used and should be removed
+AddressUpgradeable.functionCall(address,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#89-95) is never used and should be removed
+AddressUpgradeable.functionCallWithValue(address,bytes,uint256) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#108-114) is never used and should be removed
+AddressUpgradeable.functionCallWithValue(address,bytes,uint256,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#122-133) is never used and should be removed
+AddressUpgradeable.functionStaticCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#141-143) is never used and should be removed
+AddressUpgradeable.functionStaticCall(address,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#151-160) is never used and should be removed
+AddressUpgradeable.sendValue(address,uint256) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#54-59) is never used and should be removed
+ContextUpgradeable.__Context_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#17-19) is never used and should be removed
+ContextUpgradeable._msgData() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#27-29) is never used and should be removed
+CountersUpgradeable.decrement(CountersUpgradeable.Counter) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/CountersUpgradeable.sol#31-37) is never used and should be removed
+CountersUpgradeable.reset(CountersUpgradeable.Counter) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/CountersUpgradeable.sol#39-41) is never used and should be removed
+ERC1155ReceiverUpgradeable.__ERC1155Receiver_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol#13-16) is never used and should be removed
+ERC1155Upgradeable._burn(address,uint256,uint256) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#326-344) is never used and should be removed
+ERC1155Upgradeable._burnBatch(address,uint256[],uint256[]) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#353-377) is never used and should be removed
+ERC1155Upgradeable._mintBatch(address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#296-316) is never used and should be removed
+ERC165Upgradeable.__ERC165_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#23-25) is never used and should be removed
+ERC1967UpgradeUpgradeable.__ERC1967Upgrade_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#19-21) is never used and should be removed
+ERC1967UpgradeUpgradeable._changeAdmin(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#148-151) is never used and should be removed
+ERC1967UpgradeUpgradeable._getAdmin() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#131-133) is never used and should be removed
+ERC1967UpgradeUpgradeable._getBeacon() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#167-169) is never used and should be removed
+ERC1967UpgradeUpgradeable._setAdmin(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#138-141) is never used and should be removed
+ERC1967UpgradeUpgradeable._setBeacon(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#174-181) is never used and should be removed
+ERC1967UpgradeUpgradeable._upgradeBeaconToAndCall(address,bytes,bool) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#189-199) is never used and should be removed
+ERC1967UpgradeUpgradeable._upgradeToAndCall(address,bytes,bool) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#70-79) is never used and should be removed
+StorageSlotUpgradeable.getBytes32Slot(bytes32) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#69-73) is never used and should be removed
+StorageSlotUpgradeable.getUint256Slot(bytes32) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#78-82) is never used and should be removed
+UUPSUpgradeable._authorizeUpgrade(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#63) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code
+
+Pragma version^0.8.3 (contracts/MarketPlace.sol#2) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/extensions/IERC1155MetadataURIUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/IERC165Upgradeable.sol#3) allows old versions
+Pragma version^0.8.2 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/PausableUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/Initializable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/IERC1155ReceiverUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/beacon/IBeaconUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/ReentrancyGuardUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/IERC1155Upgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/CountersUpgradeable.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/StorageSlotUpgradeable.sol#3) allows old versions
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+
+Low level call in MarketPlace.purchaseItem(address,uint256) (contracts/MarketPlace.sol#219-276):
+	- (contributionTransferred) = itemsMapping[itemId].charityAddress.call{value: contributionToCharity}( ) (contracts/MarketPlace.sol#260-262)
+	- (salePriceTransferred) = itemsMapping[itemId].sellerAddress.call{value: etherToSeller}( ) (contracts/MarketPlace.sol#269-271)
+Low level call in ERC1967UpgradeUpgradeable._functionDelegateCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#207-213):
+	- (success,returndata) = target.delegatecall(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#211)
+Low level call in AddressUpgradeable.sendValue(address,uint256) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#54-59):
+	- (success) = recipient.call{value: amount}() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#57)
+Low level call in AddressUpgradeable.functionCallWithValue(address,bytes,uint256,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#122-133):
+	- (success,returndata) = target.call{value: value}(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#131)
+Low level call in AddressUpgradeable.functionStaticCall(address,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#151-160):
+	- (success,returndata) = target.staticcall(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/AddressUpgradeable.sol#158)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls
+
+MarketPlace (contracts/MarketPlace.sol#25-505) should inherit from IERC1155MetadataURIUpgradeable (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/extensions/IERC1155MetadataURIUpgradeable.sol#13-21)
+Nft (contracts/Nft.sol#23-144) should inherit from IERC1155ReceiverUpgradeable (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/IERC1155ReceiverUpgradeable.sol#10-52)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-inheritance
+
+Parameter MarketPlace.uri(uint256)._tokenId (contracts/MarketPlace.sol#421) is not in mixedCase
+Function MarketPlace._setURI(uint256,string) (contracts/MarketPlace.sol#428-431) is not in mixedCase
+Function ContextUpgradeable.__Context_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#17-19) is not in mixedCase
+Function ContextUpgradeable.__Context_init_unchained() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#21-22) is not in mixedCase
+Variable ContextUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/ContextUpgradeable.sol#30) is not in mixedCase
+Function ERC1155Upgradeable.__ERC1155_init(string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#35-39) is not in mixedCase
+Function ERC1155Upgradeable.__ERC1155_init_unchained(string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#41-43) is not in mixedCase
+Variable ERC1155Upgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#458) is not in mixedCase
+Function ERC1155ReceiverUpgradeable.__ERC1155Receiver_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol#13-16) is not in mixedCase
+Function ERC1155ReceiverUpgradeable.__ERC1155Receiver_init_unchained() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol#18-19) is not in mixedCase
+Variable ERC1155ReceiverUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155ReceiverUpgradeable.sol#26) is not in mixedCase
+Function ERC1967UpgradeUpgradeable.__ERC1967Upgrade_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#19-21) is not in mixedCase
+Function ERC1967UpgradeUpgradeable.__ERC1967Upgrade_init_unchained() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#23-24) is not in mixedCase
+Variable ERC1967UpgradeUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol#233) is not in mixedCase
+Function PausableUpgradeable.__Pausable_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/PausableUpgradeable.sol#33-36) is not in mixedCase
+Function PausableUpgradeable.__Pausable_init_unchained() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/PausableUpgradeable.sol#38-40) is not in mixedCase
+Variable PausableUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/PausableUpgradeable.sol#96) is not in mixedCase
+Function OwnableUpgradeable.__Ownable_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#28-31) is not in mixedCase
+Function OwnableUpgradeable.__Ownable_init_unchained() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#33-35) is not in mixedCase
+Variable OwnableUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#77) is not in mixedCase
+Function UUPSUpgradeable.__UUPSUpgradeable_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#21-24) is not in mixedCase
+Function UUPSUpgradeable.__UUPSUpgradeable_init_unchained() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#26-27) is not in mixedCase
+Variable UUPSUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#64) is not in mixedCase
+Function ReentrancyGuardUpgradeable.__ReentrancyGuard_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/ReentrancyGuardUpgradeable.sol#39-41) is not in mixedCase
+Function ReentrancyGuardUpgradeable.__ReentrancyGuard_init_unchained() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/ReentrancyGuardUpgradeable.sol#43-45) is not in mixedCase
+Variable ReentrancyGuardUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/security/ReentrancyGuardUpgradeable.sol#67) is not in mixedCase
+Function ERC165Upgradeable.__ERC165_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#23-25) is not in mixedCase
+Function ERC165Upgradeable.__ERC165_init_unchained() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#27-28) is not in mixedCase
+Variable ERC165Upgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/utils/introspection/ERC165Upgradeable.sol#35) is not in mixedCase
+Function ERC1155HolderUpgradeable.__ERC1155Holder_init() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#12-16) is not in mixedCase
+Function ERC1155HolderUpgradeable.__ERC1155Holder_init_unchained() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#18-19) is not in mixedCase
+Variable ERC1155HolderUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#39) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+
+OwnableUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#77) is never used in MarketPlace (contracts/MarketPlace.sol#25-505)
+UUPSUpgradeable.__gap (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/proxy/utils/UUPSUpgradeable.sol#64) is never used in Nft (contracts/Nft.sol#23-144)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-state-variable
+
+initialize() should be declared external:
+	- MarketPlace.initialize() (contracts/MarketPlace.sol#58-66)
+initialize(address) should be declared external:
+	- Nft.initialize(address) (contracts/Nft.sol#37-44)
+onERC1155Received(address,address,uint256,uint256,bytes) should be declared external:
+	- Nft.onERC1155Received(address,address,uint256,uint256,bytes) (contracts/Nft.sol#63-65)
+onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) should be declared external:
+	- Nft.onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) (contracts/Nft.sol#67-75)
+setTokenURI(uint256,string) should be declared external:
+	- Nft.setTokenURI(uint256,string) (contracts/Nft.sol#107-112)
+getTokenURI(uint256) should be declared external:
+	- Nft.getTokenURI(uint256) (contracts/Nft.sol#118-124)
+balanceOfBatch(address[],uint256[]) should be declared external:
+	- ERC1155Upgradeable.balanceOfBatch(address[],uint256[]) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#88-104)
+safeTransferFrom(address,address,uint256,uint256,bytes) should be declared external:
+	- ERC1155Upgradeable.safeTransferFrom(address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#126-138)
+safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) should be declared external:
+	- ERC1155Upgradeable.safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#143-155)
+renounceOwnership() should be declared external:
+	- OwnableUpgradeable.renounceOwnership() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#59-61)
+transferOwnership(address) should be declared external:
+	- OwnableUpgradeable.transferOwnership(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#67-70)
+onERC1155Received(address,address,uint256,uint256,bytes) should be declared external:
+	- ERC1155HolderUpgradeable.onERC1155Received(address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#20-28)
+onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) should be declared external:
+	- ERC1155HolderUpgradeable.onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#30-38)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external
+. analyzed (21 contracts with 77 detectors), 135 result(s) found
+theol@T-Air brownie % 

@@ -1,0 +1,42 @@
+Last login: Sat Apr 23 18:04:21 on ttys010
+theol@T-Air brownie % slither . --exclude-optimization --exclude-high --exclude-medium --exclude-informational
+Brownie v1.17.2 - Python development framework for Ethereum
+
+Compiling contracts...
+  Solc version: 0.8.3
+  Optimizer: Enabled  Runs: 200
+  EVM Version: Istanbul
+Generating build data...
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/OwnableUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1967UpgradeUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IBeaconUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/Initializable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/UUPSUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/PausableUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ReentrancyGuardUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155ReceiverUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155MetadataURIUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155HolderUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155ReceiverUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/AddressUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ContextUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/CountersUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/StorageSlotUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC165Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC165Upgradeable
+ - MarketPlace
+ - Nft
+
+Project has been compiled. Build artifacts saved at /Users/theol/Documents/blockchainProject/brownie/build/contracts
+
+. analyzed (21 contracts with 14 detectors), 0 result(s) found
+theol@T-Air brownie % 
+
+
+
+
+
+
+

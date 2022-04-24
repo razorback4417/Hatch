@@ -1,0 +1,27 @@
+theol@T-Air brownie % slither . --exclude-medium --exclude-low --exclude-informational --exclude-optimization
+Brownie v1.17.2 - Python development framework for Ethereum
+
+Compiling contracts...
+  Solc version: 0.8.3
+  Optimizer: Enabled  Runs: 200
+  EVM Version: Istanbul
+Generating build data...
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Ownable
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ReentrancyGuard
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155Receiver
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155MetadataURI
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155Holder
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155Receiver
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Address
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Context
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Counters
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC165
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC165
+ - marketplace
+ - nft
+
+Project has been compiled. Build artifacts saved at /Users/theol/Documents/blockchainProject/brownie/build/contracts
+
+. analyzed (15 contracts with 22 detectors), 0 result(s) found

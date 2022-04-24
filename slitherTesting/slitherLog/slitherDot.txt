@@ -1,0 +1,238 @@
+theol@T-Air brownie % slither .
+Brownie v1.17.2 - Python development framework for Ethereum
+
+Compiling contracts...
+  Solc version: 0.8.3
+  Optimizer: Enabled  Runs: 200
+  EVM Version: Istanbul
+Generating build data...
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Ownable
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ReentrancyGuard
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155Receiver
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC1155MetadataURI
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155Holder
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC1155Receiver
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Address
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Context
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/Counters
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/ERC165
+ - OpenZeppelin/openzeppelin-contracts@4.2.0/IERC165
+ - marketplace
+ - nft
+
+Project has been compiled. Build artifacts saved at /Users/theol/Documents/blockchainProject/brownie/build/contracts
+
+
+Reentrancy in marketplace.purchaseItem(address,uint256) (contracts/marketplace.sol#103-149):
+	External calls:
+	- IERC1155(nftAddress).safeTransferFrom(address(this),msg.sender,_tokenId,1,0x00) (contracts/marketplace.sol#120-126)
+	- IERC1155(nftAddress).setApprovalForAll(msg.sender,true) (contracts/marketplace.sol#128)
+	State variables written after the call(s):
+	- itemsMapping[_itemId].owner = address(msg.sender) (contracts/marketplace.sol#130)
+	- itemsMapping[_itemId].isListed = false (contracts/marketplace.sol#132)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-1
+
+ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#414) is a local variable never initialized
+ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#437) is a local variable never initialized
+ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#410) is a local variable never initialized
+ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#432) is a local variable never initialized
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables
+
+ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#401-420) ignores return value by IERC1155Receiver(to).onERC1155Received(operator,from,id,amount,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#410-418)
+ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#422-443) ignores return value by IERC1155Receiver(to).onERC1155BatchReceived(operator,from,ids,amounts,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#431-441)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+
+marketplace.purchaseItem(address,uint256).owner (contracts/marketplace.sol#111) shadows:
+	- Ownable.owner() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol#34-36) (function)
+nft.setTokenURI(uint256,string).owner (contracts/nft.sol#38) shadows:
+	- Ownable.owner() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol#34-36) (function)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#local-variable-shadowing
+
+nft.constructor(address).marketAddress (contracts/nft.sol#16) lacks a zero-check on :
+		- marketplaceAddress = marketAddress (contracts/nft.sol#17)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+
+marketplace.listItem(address,address,uint256,uint256) (contracts/marketplace.sol#63-101) has external calls inside a loop: IERC1155(nftAddress).safeTransferFrom(msg.sender,address(this),_tokenId,1,0x00) (contracts/marketplace.sol#83-89)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop
+
+Variable 'ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#410)' in ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#401-420) potentially used before declaration: response != IERC1155Receiver(to).onERC1155Received.selector (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#411)
+Variable 'ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#414)' in ERC1155._doSafeTransferAcceptanceCheck(address,address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#401-420) potentially used before declaration: revert(string)(reason) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#415)
+Variable 'ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).response (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#432)' in ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#422-443) potentially used before declaration: response != IERC1155Receiver(to).onERC1155BatchReceived.selector (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#434)
+Variable 'ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes).reason (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#437)' in ERC1155._doSafeBatchTransferAcceptanceCheck(address,address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#422-443) potentially used before declaration: revert(string)(reason) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#438)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#pre-declaration-usage-of-local-variables
+
+Reentrancy in nft.mintToken(string,uint256,bytes) (contracts/nft.sol#20-35):
+	External calls:
+	- _mint(msg.sender,currentTokenId,quantity,data) (contracts/nft.sol#28)
+		- IERC1155Receiver(to).onERC1155Received(operator,from,id,amount,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#410-418)
+	State variables written after the call(s):
+	- setApprovalForAll(marketplaceAddress,true) (contracts/nft.sol#30)
+		- _operatorApprovals[_msgSender()][operator] = approved (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#105)
+	- setTokenURI(currentTokenId,tokenURI) (contracts/nft.sol#32)
+		- _uris[_tokenId] = newURI (contracts/nft.sol#41)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2
+
+Reentrancy in marketplace.listItem(address,address,uint256,uint256) (contracts/marketplace.sol#63-101):
+	External calls:
+	- IERC1155(nftAddress).safeTransferFrom(msg.sender,address(this),_tokenId,1,0x00) (contracts/marketplace.sol#83-89)
+	Event emitted after the call(s):
+	- ItemListed(nftAddress,_tokenId,itemId,msg.sender,msg.sender,address(0),_charity,_price,true) (contracts/marketplace.sol#90-100)
+Reentrancy in nft.mintToken(string,uint256,bytes) (contracts/nft.sol#20-35):
+	External calls:
+	- _mint(msg.sender,currentTokenId,quantity,data) (contracts/nft.sol#28)
+		- IERC1155Receiver(to).onERC1155Received(operator,from,id,amount,data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#410-418)
+	Event emitted after the call(s):
+	- ApprovalForAll(_msgSender(),operator,approved) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#106)
+		- setApprovalForAll(marketplaceAddress,true) (contracts/nft.sol#30)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+
+Address.isContract(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#26-36) uses assembly
+	- INLINE ASM (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#32-34)
+Address._verifyCallResult(bool,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#189-209) uses assembly
+	- INLINE ASM (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#201-204)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#assembly-usage
+
+marketplace.purchaseItem(address,uint256) (contracts/marketplace.sol#103-149) compares to a boolean constant:
+	-require(bool,string)(isForSale == true,Item requested is not for sale.) (contracts/marketplace.sol#114)
+marketplace.getListedItems() (contracts/marketplace.sol#179-201) compares to a boolean constant:
+	-itemsMapping[i_scope_0 + 1].isListed == true (contracts/marketplace.sol#192)
+marketplace.getListedItems() (contracts/marketplace.sol#179-201) compares to a boolean constant:
+	-itemsMapping[i + 1].isListed == true (contracts/marketplace.sol#185)
+marketplace.delistItem(uint256) (contracts/marketplace.sol#203-208) compares to a boolean constant:
+	-require(bool,string)(itemsMapping[_itemId].isListed == true,Item not listed yet) (contracts/marketplace.sol#204)
+marketplace.relistItem(address,uint256,uint256) (contracts/marketplace.sol#210-219) compares to a boolean constant:
+	-require(bool,string)(itemsMapping[_itemId].isListed == false,Item is already listed) (contracts/marketplace.sol#213)
+nft.setTokenURI(uint256,string) (contracts/nft.sol#37-42) compares to a boolean constant:
+	-require(bool,string)(owner == true,Function claler is not the owner of the token) (contracts/nft.sol#39)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#boolean-equality
+
+Different versions of Solidity is used:
+	- Version used: ['^0.8.0', '^0.8.3']
+	- ^0.8.3 (contracts/marketplace.sol#3)
+	- ^0.8.3 (contracts/nft.sol#2)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/introspection/IERC165.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/IERC1155.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/IERC1155Receiver.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/utils/ERC1155Holder.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/introspection/ERC165.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/utils/ERC1155Receiver.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/security/ReentrancyGuard.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Context.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Counters.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#3)
+	- ^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol#3)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#different-pragma-directives-are-used
+
+Address._verifyCallResult(bool,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#189-209) is never used and should be removed
+Address.functionCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#79-81) is never used and should be removed
+Address.functionCall(address,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#89-95) is never used and should be removed
+Address.functionCallWithValue(address,bytes,uint256) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#108-114) is never used and should be removed
+Address.functionCallWithValue(address,bytes,uint256,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#122-133) is never used and should be removed
+Address.functionDelegateCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#168-170) is never used and should be removed
+Address.functionDelegateCall(address,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#178-187) is never used and should be removed
+Address.functionStaticCall(address,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#141-143) is never used and should be removed
+Address.functionStaticCall(address,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#151-160) is never used and should be removed
+Address.sendValue(address,uint256) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#54-59) is never used and should be removed
+Context._msgData() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Context.sol#20-22) is never used and should be removed
+Counters.decrement(Counters.Counter) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Counters.sol#31-37) is never used and should be removed
+Counters.reset(Counters.Counter) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Counters.sol#39-41) is never used and should be removed
+ERC1155._burn(address,uint256,uint256) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#319-337) is never used and should be removed
+ERC1155._burnBatch(address,uint256[],uint256[]) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#346-370) is never used and should be removed
+ERC1155._mintBatch(address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#289-309) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code
+
+Pragma version^0.8.3 (contracts/marketplace.sol#3) allows old versions
+Pragma version^0.8.3 (contracts/nft.sol#2) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/introspection/IERC165.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/IERC1155.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/IERC1155Receiver.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/utils/ERC1155Holder.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/introspection/ERC165.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/utils/ERC1155Receiver.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/security/ReentrancyGuard.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Context.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Counters.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#3) allows old versions
+Pragma version^0.8.0 (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol#3) allows old versions
+solc-mit.8d00100 is not recommended for deployment
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+
+Low level call in marketplace.purchaseItem(address,uint256) (contracts/marketplace.sol#103-149):
+	- (royaltiesTransferred) = itemsMapping[_itemId].charity.call{value: royaltiesToCharity}( ) (contracts/marketplace.sol#134-136)
+	- (salePriceTransferred) = itemsMapping[_itemId].seller.call{value: etherToSeller}( ) (contracts/marketplace.sol#142-144)
+Low level call in Address.sendValue(address,uint256) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#54-59):
+	- (success) = recipient.call{value: amount}() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#57)
+Low level call in Address.functionCallWithValue(address,bytes,uint256,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#122-133):
+	- (success,returndata) = target.call{value: value}(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#131)
+Low level call in Address.functionStaticCall(address,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#151-160):
+	- (success,returndata) = target.staticcall(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#158)
+Low level call in Address.functionDelegateCall(address,bytes,string) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#178-187):
+	- (success,returndata) = target.delegatecall(data) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/utils/Address.sol#185)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls
+
+Contract marketplace (contracts/marketplace.sol#11-229) is not in CapWords
+Parameter marketplace.listItemsForSale(address,address,uint256,uint256,uint256)._charity (contracts/marketplace.sol#52) is not in mixedCase
+Parameter marketplace.listItemsForSale(address,address,uint256,uint256,uint256)._tokenId (contracts/marketplace.sol#53) is not in mixedCase
+Parameter marketplace.listItemsForSale(address,address,uint256,uint256,uint256)._quantity (contracts/marketplace.sol#54) is not in mixedCase
+Parameter marketplace.listItemsForSale(address,address,uint256,uint256,uint256)._price (contracts/marketplace.sol#55) is not in mixedCase
+Parameter marketplace.listItem(address,address,uint256,uint256)._charity (contracts/marketplace.sol#65) is not in mixedCase
+Parameter marketplace.listItem(address,address,uint256,uint256)._tokenId (contracts/marketplace.sol#66) is not in mixedCase
+Parameter marketplace.listItem(address,address,uint256,uint256)._price (contracts/marketplace.sol#67) is not in mixedCase
+Parameter marketplace.purchaseItem(address,uint256)._itemId (contracts/marketplace.sol#103) is not in mixedCase
+Parameter marketplace.delistItem(uint256)._itemId (contracts/marketplace.sol#203) is not in mixedCase
+Parameter marketplace.relistItem(address,uint256,uint256)._itemId (contracts/marketplace.sol#210) is not in mixedCase
+Parameter marketplace.getItemById(uint256)._itemId (contracts/marketplace.sol#225) is not in mixedCase
+Contract nft (contracts/nft.sol#8-61) is not in CapWords
+Parameter nft.setTokenURI(uint256,string)._tokenId (contracts/nft.sol#37) is not in mixedCase
+Parameter nft.checkIfOwner(uint256)._tokenId (contracts/nft.sol#44) is not in mixedCase
+Parameter nft.getTokenURI(uint256)._tokenId (contracts/nft.sol#56) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+
+listItemsForSale(address,address,uint256,uint256,uint256) should be declared external:
+	- marketplace.listItemsForSale(address,address,uint256,uint256,uint256) (contracts/marketplace.sol#50-61)
+purchaseItem(address,uint256) should be declared external:
+	- marketplace.purchaseItem(address,uint256) (contracts/marketplace.sol#103-149)
+getItemsOwned(address) should be declared external:
+	- marketplace.getItemsOwned(address) (contracts/marketplace.sol#151-177)
+getListedItems() should be declared external:
+	- marketplace.getListedItems() (contracts/marketplace.sol#179-201)
+delistItem(uint256) should be declared external:
+	- marketplace.delistItem(uint256) (contracts/marketplace.sol#203-208)
+relistItem(address,uint256,uint256) should be declared external:
+	- marketplace.relistItem(address,uint256,uint256) (contracts/marketplace.sol#210-219)
+getCurrentItemId() should be declared external:
+	- marketplace.getCurrentItemId() (contracts/marketplace.sol#221-223)
+getItemById(uint256) should be declared external:
+	- marketplace.getItemById(uint256) (contracts/marketplace.sol#225-227)
+mintToken(string,uint256,bytes) should be declared external:
+	- nft.mintToken(string,uint256,bytes) (contracts/nft.sol#20-35)
+getCurrentTokenID() should be declared external:
+	- nft.getCurrentTokenID() (contracts/nft.sol#51-54)
+getTokenURI(uint256) should be declared external:
+	- nft.getTokenURI(uint256) (contracts/nft.sol#56-58)
+onERC1155Received(address,address,uint256,uint256,bytes) should be declared external:
+	- ERC1155Holder.onERC1155Received(address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/utils/ERC1155Holder.sol#11-19)
+onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) should be declared external:
+	- ERC1155Holder.onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/utils/ERC1155Holder.sol#21-29)
+uri(uint256) should be declared external:
+	- ERC1155.uri(uint256) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#58-60)
+balanceOfBatch(address[],uint256[]) should be declared external:
+	- ERC1155.balanceOfBatch(address[],uint256[]) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#81-97)
+safeTransferFrom(address,address,uint256,uint256,bytes) should be declared external:
+	- ERC1155.safeTransferFrom(address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#119-131)
+safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) should be declared external:
+	- ERC1155.safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC1155/ERC1155.sol#136-148)
+renounceOwnership() should be declared external:
+	- Ownable.renounceOwnership() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol#53-55)
+transferOwnership(address) should be declared external:
+	- Ownable.transferOwnership(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol#61-64)
+
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external
+. analyzed (15 contracts with 77 detectors), 99 result(s) found
+

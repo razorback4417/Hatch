@@ -1,0 +1,67 @@
+Last login: Sat Apr 23 18:08:58 on ttys011
+theol@T-Air brownie % slither . --exclude-low --exclude-high --exclude-medium --exclude-informational
+Brownie v1.17.2 - Python development framework for Ethereum
+
+Compiling contracts...
+  Solc version: 0.8.3
+  Optimizer: Enabled  Runs: 200
+  EVM Version: Istanbul
+Generating build data...
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/OwnableUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1967UpgradeUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IBeaconUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/Initializable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/UUPSUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/PausableUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ReentrancyGuardUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155ReceiverUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC1155MetadataURIUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155HolderUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC1155ReceiverUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/AddressUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ContextUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/CountersUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/StorageSlotUpgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/ERC165Upgradeable
+ - OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/IERC165Upgradeable
+ - MarketPlace
+ - Nft
+
+Project has been compiled. Build artifacts saved at /Users/theol/Documents/blockchainProject/brownie/build/contracts
+
+
+initialize() should be declared external:
+	- MarketPlace.initialize() (contracts/MarketPlace.sol#58-66)
+initialize(address) should be declared external:
+	- Nft.initialize(address) (contracts/Nft.sol#37-45)
+onERC1155Received(address,address,uint256,uint256,bytes) should be declared external:
+	- Nft.onERC1155Received(address,address,uint256,uint256,bytes) (contracts/Nft.sol#64-66)
+onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) should be declared external:
+	- Nft.onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) (contracts/Nft.sol#68-76)
+setTokenURI(uint256,string) should be declared external:
+	- Nft.setTokenURI(uint256,string) (contracts/Nft.sol#108-113)
+getTokenURI(uint256) should be declared external:
+	- Nft.getTokenURI(uint256) (contracts/Nft.sol#119-125)
+balanceOfBatch(address[],uint256[]) should be declared external:
+	- ERC1155Upgradeable.balanceOfBatch(address[],uint256[]) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#88-104)
+safeTransferFrom(address,address,uint256,uint256,bytes) should be declared external:
+	- ERC1155Upgradeable.safeTransferFrom(address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#126-138)
+safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) should be declared external:
+	- ERC1155Upgradeable.safeBatchTransferFrom(address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/ERC1155Upgradeable.sol#143-155)
+renounceOwnership() should be declared external:
+	- OwnableUpgradeable.renounceOwnership() (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#59-61)
+transferOwnership(address) should be declared external:
+	- OwnableUpgradeable.transferOwnership(address) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/access/OwnableUpgradeable.sol#67-70)
+onERC1155Received(address,address,uint256,uint256,bytes) should be declared external:
+	- ERC1155HolderUpgradeable.onERC1155Received(address,address,uint256,uint256,bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#20-28)
+onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) should be declared external:
+	- ERC1155HolderUpgradeable.onERC1155BatchReceived(address,address,uint256[],uint256[],bytes) (../../../.brownie/packages/OpenZeppelin/openzeppelin-contracts-upgradeable@4.2.0/contracts/token/ERC1155/utils/ERC1155HolderUpgradeable.sol#30-38)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external
+
+-------------------------------------------------------------------------------------------
+FIXED: All non-OZ functions previously declared public changed to external
+-------------------------------------------------------------------------------------------
+
+. analyzed (21 contracts with 2 detectors), 13 result(s) found
